@@ -11,14 +11,15 @@ import {
   Text,
   View,
   TouchableHighlight,
+  FlatList,
 } from 'react-native';
 
 import * as firebase from 'firebase';
 
 const firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  databaseURL: "",
+  apiKey: "AIzaSyBp77ueoIxjvq_bibnMOYAGWLM6RSmLlOg",
+  authDomain: "financial-tracker-e6124.firebaseapp.com",
+  databaseURL: "https://financial-tracker-e6124.firebaseio.com/",
   storageBucket: "",
 };
 
@@ -36,15 +37,21 @@ type Props = {};
 export default class App extends Component<Props> {
   constructor(props){
     super(props);
-  }
+  };
 
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar title="Grocery List" />
-
-        <PlaceHolder title="Income" />
-        <PlaceHolder title="Expense" /> 
+        <StatusBar title="Financial Tracker" />
+        <FlatList
+          data={[
+            {title: 'Devin', key:"Devin", price:"300"},
+            {title: 'Jackson', key: 'Jackson', price:"(100)"},
+            {title: 'James', key: 'James', price:"(200)"},
+            {title: 'Joel', key:'Joel', price:""},
+            {title: 'John', key:"John", price:""},
+          ]}
+          renderItem={({item}) => <View><Text>{item.title} {item.price}</Text></View>}        />
         <ActionButton title = "Add" />
       </View>
     );
